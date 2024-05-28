@@ -23,22 +23,24 @@ function askForName() {
 
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
- for (let i = 0; i < questions.length; ++i) {
-  candidateAnswer = input.question(questions[i]);
-}
+  for (let i = 0; i < questions.length; ++i) {
+    candidateAnswers = input.question(questions[i]);
+  }
 }
 function gradeQuiz(candidateAnswers) {
-
+  let grade = 0;
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  for (i=0; i < questions.length; ++i) {
-    if (candidateAnswer[i] === correctAnswer[i]) {
-    console.log(`Your answer: ${candidateAnswer[i]}
-    Correct Answer: ${correctAnswer[i]}`);
-  } 
+  for (i = 0; i < questions.length; ++i) {
+    if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()) {
+      grade += 1;
+    }
+    console.log(
+    `Your answer: ${candidateAnswers[i]}
+    Correct Answer: ${correctAnswers[i]}`);
   }
 
-
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
+  grade = (grade/5)*100;
+  //TODO 3.2 use this variable to calculate the candidates score.
 
 
   return grade;
@@ -47,10 +49,11 @@ function gradeQuiz(candidateAnswers) {
 function runProgram() {
   askForName();
   // TODO 1.1c: Greet candidate using their name //
-   console.log(`Hello, ${candidateName}.`);
+  console.log(`Hello, ${candidateName}.`);
   askQuestion();
   gradeQuiz(this.candidateAnswers);
 }
+
 
 // ----------- Don't write any code or change any code below this line ---------- //
 module.exports = {
